@@ -1,6 +1,6 @@
 import asyncio
-from bleak import discover
 from bleak import BleakScanner
+from bleak import AdvertisementData
 from datetime import datetime
 import logging
 import threading
@@ -18,15 +18,15 @@ async def runBleScan():
     global lenOfRssiFilter
     global strongestSignal
 
-    devices = await discover(timeout=5.0) # could use AdvertisementFilter, BluetoothLEAdvertisementFilter.BytePatterns Property
+    devices = await BleakScanner.discover(timeout=5.0) # could use AdvertisementFilter, BluetoothLEAdvertisementFilter.BytePatterns Property
     dataList = []
     macList = []
     rssiList = []
     for d in devices:
         d.details
-        if d.metadata.keys().__contains__('manufacturer_data'): #has manufacturer data
+        if d.metadata.keys().__contains__('manufacturer_data'): #has manufacturer data      #need to change
             manData = d.metadata.get('manufacturer_data')
-            if  str(manData.keys()) == 'dict_keys([65535])': #has manufacturerID 0xFF
+            if  str(manData.keys()) == 'dict_keys([65535])': #has manufacturerID 0xFF        #need to change
                 manDataStr = manData.get(65535)
                 if manDataStr[0] == 2 and manDataStr[1] == 236: #has Empa CO2 ID "0xEC02"
                     #add to list
@@ -109,7 +109,7 @@ async def runBleScan():
         print("strongest device: " + str(strongestSignal) +" with rssi of: " + str(maxRssi) +" and CO2 of: " + str(co2_strongest) )
 
 
-def thread_listenAndWriteToFile ():
+def thread_listenAndWriteToFile():
     print("thread_listenAndWriteToFile starting...")
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
@@ -123,9 +123,9 @@ def thread_listenAndWriteToFile ():
 print("Script starting on a " + platform.machine() + " platform")
 
 dict_devices = dict()
-default_list_mac_past_rssi = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] # [timeoutCnt, cycleCnt, rssiFilterIdx, rssi1, rssi2, ..., rssi_n, CO2]
-lenOfRssiFilter = len(default_list_mac_past_rssi) - 4
-maxTimeout = 5 #5 iterations
+default_list_mac_past_rssi = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] # [timeoutCnt, cycleCnt, rssiFilterIdx, rssi1, rssi2, ..., rssi_n, CO2]  # also unendlich viele ble geräte erkennbar?
+lenOfRssiFilter = len(default_list_mac_past_rssi) - 4           #warum  - 4?
+maxTimeout = 5 #5 iterations  
 strongestSignal = ""
 
 x = threading.Thread(target=thread_listenAndWriteToFile, daemon=True)
