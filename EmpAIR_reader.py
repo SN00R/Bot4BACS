@@ -11,6 +11,7 @@ import array
 import statistics
 import platform
 
+start = time.time()
 
 async def runBleScan():
     global dict_devices
@@ -19,6 +20,8 @@ async def runBleScan():
     global strongestSignal
 
     devices = await BleakScanner.discover(timeout=5.0) # could use AdvertisementFilter, BluetoothLEAdvertisementFilter.BytePatterns Property
+    #print(devices)
+    #print('#devices: ', len(devices))
     dataList = []
     macList = []
     rssiList = []
@@ -28,7 +31,13 @@ async def runBleScan():
             manData = d.metadata.get('manufacturer_data')
             if  str(manData.keys()) == 'dict_keys([65535])': #has manufacturerID 0xFF        #need to change
                 manDataStr = manData.get(65535)
-                if manDataStr[0] == 2 and manDataStr[1] == 236: #has Empa CO2 ID "0xEC02"
+                #print(manDataStr)
+                """
+                if manDataStr[0] == 2 and manDataStr[1] == 236:
+                    print('Has Empa ID with AND operator')
+                elif manDataStr[0] == 2 or manDataStr[1] == 236:
+                    print('Has Empa ID with OR operator') """
+                if manDataStr[0] == 2  and manDataStr[1] == 236: #has Empa CO2 ID "0xEC02"        # change AND to OR operator, since manDataStr[0] jumps around 2 and 3, even though it shouldnt
                     #add to list
                     dataList.append(manDataStr)
                     macList.append(d.address)
@@ -115,12 +124,14 @@ def thread_listenAndWriteToFile():
     asyncio.set_event_loop(loop)
     while(True):
         secNow = time.time()
+        print('secNow: ', secNow)
+        print('secTot: ', secNow - start)
         loop.run_until_complete(runBleScan())
         while(time.time() < (secNow + 2)):
             time.sleep(1)
 
 # Main:
-print("Script starting on a " + platform.machine() + " platform")
+#print("Script starting on a " + platform.machine() + " platform")
 
 dict_devices = dict()
 default_list_mac_past_rssi = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] # [timeoutCnt, cycleCnt, rssiFilterIdx, rssi1, rssi2, ..., rssi_n, CO2]  # also unendlich viele ble geräte erkennbar?
@@ -130,6 +141,22 @@ strongestSignal = ""
 
 x = threading.Thread(target=thread_listenAndWriteToFile, daemon=True)
 x.start()
-while(True):
+""" while(True):
     time.sleep(1)
-print("exiting..")
+    if time.time() - start > 180:
+        print(time.time()-start)
+        print('------ BREAK ------ exiting...')
+        break
+else:
+    print("exiting..") """
+
+try:
+    while True:
+        time.sleep(1)
+        print('processing...')   
+        if time.time() - start > 1800:
+        print(time.time()-start)
+        print('------ BREAK ------ exiting after time limit...')
+        break
+except KeyboardInterrupt:
+    print('------ BREAK ------ exiting after interrupt...')
