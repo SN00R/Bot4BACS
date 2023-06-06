@@ -124,11 +124,16 @@ def thread_listenAndWriteToFile():
     asyncio.set_event_loop(loop)
     while(True):
         secNow = time.time()
+        secTot = secNow - start
         print('secNow: ', secNow)
-        print('secTot: ', secNow - start)
+        print('secTot: ', secTot)
         loop.run_until_complete(runBleScan())
         while(time.time() < (secNow + 2)):
             time.sleep(1)
+            if secTot > 1800:
+                print('Process stopped after: '. secTot/60, 'mins')
+                print('------ BREAK ------ exiting after time limit...')
+                break
 
 # Main:
 #print("Script starting on a " + platform.machine() + " platform")
@@ -141,7 +146,8 @@ strongestSignal = ""
 
 x = threading.Thread(target=thread_listenAndWriteToFile, daemon=True)
 x.start()
-""" while(True):
+""" 
+while(True):
     time.sleep(1)
     if time.time() - start > 180:
         print(time.time()-start)
@@ -153,10 +159,9 @@ else:
 try:
     while True:
         time.sleep(1)
-        print('processing...')   
-        if time.time() - start > 1800:
-        print(time.time()-start)
-        print('------ BREAK ------ exiting after time limit...')
-        break
+        print('processing...')  
+    else:
+        print("exiting..") 
 except KeyboardInterrupt:
     print('------ BREAK ------ exiting after interrupt...')
+
