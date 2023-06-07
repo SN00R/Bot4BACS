@@ -52,8 +52,8 @@ async def runBleScan():
             except:
             #create new file
                 with open(fileName, 'w', newline='') as csvfile:
-                    headerwriter = csv.writer(csvfile, delimiter=',',                           #   Changed delimiter from ; to ,
-                                            quotechar="", quoting=csv.QUOTE_NONE)               #   Changed quotechar from '' to ""
+                    headerwriter = csv.writer(csvfile, delimiter=';',
+                                            quotechar='', quoting=csv.QUOTE_NONE)
                     headerwriter.writerow(['Time'] + ['Status'] + ['CO2'] + ['Temperature'] + ['Humidity'] + ['Pressure'] + ['Photo'] + ['Battery'] + ['HWVersion'] + ['SWVersion']+ ['rssi'])
             #append
             try:
