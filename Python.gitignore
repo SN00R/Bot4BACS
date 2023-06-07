@@ -127,6 +127,8 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+/home/hello-robot/Bot4BACS/env
+/env
 
 # Spyder project settings
 .spyderproject
