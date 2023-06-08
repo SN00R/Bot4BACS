@@ -5,8 +5,9 @@ import matplotlib.pyplot as plt
 df = pd.read_csv('/home/hello-robot/Bot4BACS/F3_B8_07_6C_28_8E.csv')
 df.head()
 
-time = df["Time"]
+time = df.iloc[2,0]
 print(time)
+print(time.info())
 
 gas = df.iloc[:,2]
 #print(gas)
