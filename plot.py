@@ -1,6 +1,26 @@
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 
-import pandas as pd
-df = pd.read_csv('/home/hello-robot/Bot4BACS/FE_ED_E9_B2_20_8E.csv')
+df = pd.read_csv('/home/hello-robot/Bot4BACS/F3_B8_07_6C_28_8E.csv')
 df.head()
+
+time = df["Time"]
+print(time)
+
+gas = df.iloc[:,2]
+#print(gas)
+
+""" plt.plot(time, gas)
+plt.show()
+ """
+
+""" df.plot(x="Time", y=["CO2", "Temperature", "Pressure"])
+plt.show() """
+
+
+""" 
+plt.plot(df["Time"], df["CO2"])
+plt.show()
+
+ """

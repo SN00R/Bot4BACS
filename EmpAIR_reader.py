@@ -11,7 +11,8 @@ import array
 import statistics
 import platform
 
-start = time.time()
+start_time = time.time()
+print("Start Time: ", start_time)
 
 async def runBleScan():
     global dict_devices
@@ -52,7 +53,7 @@ async def runBleScan():
             except:
             #create new file
                 with open(fileName, 'w', newline='') as csvfile:
-                    headerwriter = csv.writer(csvfile, delimiter=';',
+                    headerwriter = csv.writer(csvfile, delimiter=',',
                                             quotechar='', quoting=csv.QUOTE_NONE)
                     headerwriter.writerow(['Time'] + ['Status'] + ['CO2'] + ['Temperature'] + ['Humidity'] + ['Pressure'] + ['Photo'] + ['Battery'] + ['HWVersion'] + ['SWVersion']+ ['rssi'])
             #append
@@ -77,7 +78,7 @@ async def runBleScan():
                 if (sensor[2] & 15) != dict_devices[macList[count]][1]:
                     dict_devices[macList[count]][1] = (sensor[2] & 15)
                     with open(fileName, 'a+', newline='') as csvfile:
-                        datawriter = csv.writer(csvfile, delimiter=';',
+                        datawriter = csv.writer(csvfile, delimiter=',',
                                                 quotechar='', quoting=csv.QUOTE_NONE)
                         datawriter.writerow([now] + [stat] + [co2] + [temp] + [humi] + [press] + [photo] + [batt] + [hwVers] + [swVers] + [rssiList[count]])
                     print("saved value to " + fileName + " at " + str(now) + " CO2: " + str(co2) + "ppm, rssi: " +str(rssiList[count]))
@@ -124,16 +125,12 @@ def thread_listenAndWriteToFile():
     asyncio.set_event_loop(loop)
     while(True):
         secNow = time.time()
-        secTot = secNow - start
+        secTot = secNow - start_time
         print('secNow: ', secNow)
         print('secTot: ', secTot)
         loop.run_until_complete(runBleScan())
         while(time.time() < (secNow + 2)):
             time.sleep(1)
-            if secTot > 1800:
-                print('Process stopped after: '. secTot/60, 'mins')
-                print('------ BREAK ------ exiting after time limit...')
-                break
 
 # Main:
 #print("Script starting on a " + platform.machine() + " platform")
@@ -146,22 +143,16 @@ strongestSignal = ""
 
 x = threading.Thread(target=thread_listenAndWriteToFile, daemon=True)
 x.start()
-""" 
-while(True):
-    time.sleep(1)
-    if time.time() - start > 180:
-        print(time.time()-start)
-        print('------ BREAK ------ exiting...')
-        break
-else:
-    print("exiting..") """
 
 try:
     while True:
         time.sleep(1)
         print('processing...')  
-    else:
-        print("exiting..") 
+        if time.time() - start_time > 1800:
+            print("Process stopped after: ", (time.time() - start_time)/60, "mins")
+            print("exiting...")
+            print('------ BREAK ------ exiting after time limit...')
+            break
+
 except KeyboardInterrupt:
     print('------ BREAK ------ exiting after interrupt...')
-
