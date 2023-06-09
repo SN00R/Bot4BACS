@@ -6,8 +6,6 @@ from datetime import datetime
 
 terms=[]
 
-
-
 df1 = pd.read_csv('/home/hello-robot/Bot4BACS/F3_B8_07_6C_28_8E.csv')    #Window
 df2 = pd.read_csv('/home/hello-robot/Bot4BACS/C3_23_CF_79_6C_FB.csv')    #Coffee Desk
 df3 = pd.read_csv('/home/hello-robot/Bot4BACS/DD_3F_BC_9B_56_EC.csv')    #Meeting Table
