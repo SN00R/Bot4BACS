@@ -1,29 +1,3 @@
-asn1crypto          1.5.1  
-async-timeout       4.0.2  
-bleak               0.20.2 
-cffi                1.15.1 
-click               8.1.3  
-construct           2.10.68
-contourpy           1.0.7  
-cryptography        41.0.1 
-cycler              0.11.0 
-dbus-fast           1.86.0 
-fonttools           4.39.4 
-importlib-resources 5.12.0 
-kiwisolver          1.4.4  
-mar                 3.2.0  
-matplotlib          3.7.1  
-numpy               1.24.3 
-packaging           23.1   
-pandas              2.0.2  
-Pillow              9.5.0  
-pip                 20.0.2 
-pkg-resources       0.0.0  
-pycparser           2.21   
-pyparsing           3.0.9  
-python-dateutil     2.8.2  
-pytz                2023.3 
-setuptools          44.0.0 
-six                 1.16.0 
-tzdata              2023.3 
-zipp                3.15.0 
+bleak
+pandas
+matplotlib
