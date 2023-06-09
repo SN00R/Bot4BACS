@@ -148,7 +148,7 @@ try:
     while True:
         time.sleep(1)
         print('processing...')  
-        if time.time() - start_time > 1800:
+        if time.time() - start_time > 3600:
             print("Process stopped after: ", (time.time() - start_time)/60, "mins")
             print("exiting...")
             print('------ BREAK ------ exiting after time limit...')
