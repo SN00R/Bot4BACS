@@ -50,5 +50,13 @@ plt.show() """
 """ 
 plt.plot(df["Time"], df["CO2"])
 plt.show()
-
  """
+
+"""fig, axs = plt.subplots(2, 3)
+axs[0,0].plot(time,merged,label=["Window","Coffee","Meeting","Robot"])
+axs[0,0].set_title('CO2 Measurements on 21.06.2023 for calibration')
+plt.show() 
+
+merged = pd.concat([df1["CO2"],df2["CO2"],df3["CO2"],df4["CO2"]],axis=1)
+merged = merged.dropna()
+"""
