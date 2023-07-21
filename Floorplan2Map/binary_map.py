@@ -1,7 +1,7 @@
 import cv2 # Import OpenCV
    
 # read the image file
-img = cv2.imread('/Users/noor/Bot4BACS/Floorplan2Map/VisionWood_BW_binary_2.png')
+img = cv2.imread('/Users/noor/Bot4BACS/Floorplan2Map/Hilo_Groundfloor_edited.png')
    
 ret, bw_img = cv2.threshold(img, 220, 255, cv2.THRESH_BINARY)
    
