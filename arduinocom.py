@@ -43,38 +43,39 @@ ser.open()
 time.sleep(2) 
 df = []
 sample = []
+try:
+    while ser.isOpen():
+        stamp = datetime.now()
+        stamp = stamp.strftime("%Y-%m-%d %H:%M:%S")
+        print("datetime: ", stamp)
+        input_data = ser.readline().strip().decode("utf-8")
+        #print("input: ", input_data)
+        floatdata = list(map(float, input_data.split(',')))
+        rounddata = list(np.around(np.array(floatdata),2))
+        print('round data: ', rounddata)
+        rounddata.insert(0, stamp)
+        rawdata.append(rounddata)
+        time.sleep(2)
 
+        #print("input_data length: ", len(input_data))
+        #print("rawdata length: ", len(rawdata))
+        #if len(rawdata) == 16:
+        #   sample = pd.array(rawdata)
+        #print(sample)
 
-while ser.isOpen():
-    stamp = datetime.now()
-    stamp = stamp.strftime("%Y-%m-%d %H:%M:%S")
-    print("datetime: ", stamp)
-    input_data = ser.readline().strip().decode("utf-8")
-    #print("input: ", input_data)
-    floatdata = list(map(float, input_data.split(',')))
-    rounddata = list(np.around(np.array(floatdata),2))
-    print('round data: ', rounddata)
-    rounddata.insert(0, stamp)
-    rawdata.append(rounddata)
-    time.sleep(2)
+        timecheck = datetime.now()
+        print("Timecheck: ", timecheck.strftime("%Y-%m-%d %H:%M:%S"))
+        if len(rawdata) > 50:
+            break
+except KeyboardInterrupt:
+    print("----- INTERRUPTED -----")
 
-    #print("input_data length: ", len(input_data))
-    #print("rawdata length: ", len(rawdata))
-    #if len(rawdata) == 16:
-     #   sample = pd.array(rawdata)
-    #print(sample)
-
-    timecheck = datetime.now()
-    print("Timecheck: ", timecheck.strftime("%Y-%m-%d %H:%M:%S"))
-    if len(rawdata) > 1000:
-        break
-
-print("collected data", rawdata)
 
 df = pd.DataFrame(rawdata, columns=['Time','L1', 'L2', 'Amb','Obj', 'Temp', 'Humid', 'CO2', 'Elapsed'])
+print("collected data", rawdata)
 #df['Time'] = pd.to_datetime(df.loc[:,'Time'])
 
 print("Collected Data: ", rawdata)
 print("DF: ", df)
 
-df.to_csv("/Users/noor/Bot4BACS/Sensoring/serial_testreal.csv", index=False)
+df.to_csv("/Users/noor/Bot4BACS/Sensoring/serial_test_cal.csv", index=False)
