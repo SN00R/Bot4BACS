@@ -1,4 +1,4 @@
 bleak
 pandas
-matplotlibpip 
+matplotlib
 scikit-learn
