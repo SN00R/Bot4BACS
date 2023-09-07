@@ -148,11 +148,13 @@ try:
     while True:
         time.sleep(1)
         print('processing...')  
-        if time.time() - start_time > 3000:
+        if time.time() - start_time > 2000:
             print("Process stopped after: ", (time.time() - start_time)/60, "mins")
             print("exiting...")
             print('------ BREAK ------ exiting after time limit...')
             break
 
 except KeyboardInterrupt:
+    print("Process stopped after: ", (time.time() - start_time)/60, "mins")
+    print("exiting...")
     print('------ BREAK ------ exiting after interrupt...')
