@@ -21,8 +21,8 @@ async def runBleScan():
     global strongestSignal
 
     devices = await BleakScanner.discover(timeout=5.0) # could use AdvertisementFilter, BluetoothLEAdvertisementFilter.BytePatterns Property
-    #print(devices)
-    #print('#devices: ', len(devices))
+    print(devices)
+    print('#devices: ', len(devices))
     dataList = []
     macList = []
     rssiList = []
@@ -156,3 +156,5 @@ try:
 
 except KeyboardInterrupt:
     print('------ BREAK ------ exiting after interrupt...')
+    print("Process stopped after: ", (time.time() - start_time)/60, "mins")
+    print("exiting...")

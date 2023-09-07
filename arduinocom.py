@@ -65,7 +65,7 @@ try:
 
         timecheck = datetime.now()
         print("Timecheck: ", timecheck.strftime("%Y-%m-%d %H:%M:%S"))
-        if len(rawdata) > 50:
+        if len(rawdata) > 950:
             break
 except KeyboardInterrupt:
     print("----- INTERRUPTED -----")
