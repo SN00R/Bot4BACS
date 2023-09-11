@@ -1154,42 +1154,4 @@ Date/Time,274 [°C],274 [%RH],274 [bar],274 [ppm],274 Dew point [°C],274 Wet bu
 07/09/2023 16:48:35,27.1,49.9,0.9677,645,15.8,19.5,12.93,-,0.9684,-0.017,
 07/09/2023 16:48:37,27.2,49.8,0.9678,646,15.8,19.6,12.98,-,0.9684,-0.017,
 07/09/2023 16:48:39,27.2,49.9,0.9678,647,15.8,19.6,13.01,-,0.9684,-0.017,
-Overall average,27.0,50.7,0.9678,649,15.9,19.6,13.07,xxx,0.9685,-0.017,
-Minimum total,26.8,49.8,0.9677,609,15.7,19.4,12.90,-,0.9684,-0.018,
-Maximum total,27.2,51.7,0.9679,700,16.1,19.7,13.20,-,0.9685,-0.017,
 
-< General information >,
-App version,Name of measurement program,Date of measurement,Comments,
-V 14.51.14.62512,Basic view,07/09/2023 16:48,,
-
-< Company >,
-City,Country,Customer number,E-mail address,Name,Name of technician,Tel.,Fax,Website address,Street,
-8600 Dübendorf,Switzerland,,,Empa,,+41 58 765 11 11,+41 58 765 11 22,www.empa.ch,Ueberlandstrasse 129,
-
-< Customer >,
-City,Country,Customer number,E-mail address,Name,Name of technician,Tel.,Fax,Website address,Street,
-,,,,,,,,,,
-
-< Instrument information >,
-Instrument name,Serial number,Version,
-testo 400,63874713,V 14.51.14.62512,
-
-< Instruments >,
-Name,Serial number,Firmware version,Measurement parameters,
-CO₂,58627274,V 0.8.16,Temperature,
-CO₂,58627274,V 0.8.16,Relative humidity,
-CO₂,58627274,V 0.8.16,Pressure,
-CO₂,58627274,V 0.8.16,CO₂ concentration,
-testo 400,63874713,V 1.1.4,Pressure,
-testo 400,63874713,V 1.1.4,Differential pressure,
-
-< Measuring site >,
-Name,System number,System type,System manufacturer,System serial number,Date of manufacture,Notes,
-,,,,,,,
-
-< Measurement parameters >,
-Measuring mode,Measuring cycle,Start,End,Duration,
-Continuous,2 Sec,07/09/2023 16:10:13,07/09/2023 16:48:39,0 d 0 Hr. 38 Min. 26 Sec,
-
-< Images >,
-Name,
