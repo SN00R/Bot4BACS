@@ -55,7 +55,12 @@ try:
         print('round data: ', rounddata)
         rounddata.insert(0, stamp)
         rawdata.append(rounddata)
+        with open('/Users/noor/Bot4BACS/Sensoring/serial_test_cal.csv', 'a', newline='') as csvfile:
+                    headerwriter = csv.writer(csvfile, delimiter=',',
+                                            quotechar='', quoting=csv.QUOTE_NONE)
+                    headerwriter.writerow(rounddata)
         time.sleep(2)
+
 
         #print("input_data length: ", len(input_data))
         #print("rawdata length: ", len(rawdata))
@@ -65,17 +70,17 @@ try:
 
         timecheck = datetime.now()
         print("Timecheck: ", timecheck.strftime("%Y-%m-%d %H:%M:%S"))
-        if len(rawdata) > 950:
+        if len(rawdata) > 6000:
             break
 except KeyboardInterrupt:
     print("----- INTERRUPTED -----")
 
 
-df = pd.DataFrame(rawdata, columns=['Time','L1', 'L2', 'Amb','Obj', 'Temp', 'Humid', 'CO2', 'Elapsed'])
+df = pd.DataFrame(rawdata, columns=['Time', 'Amb','Obj', 'Temp', 'Humid', 'CO2', 'Elapsed'])
 print("collected data", rawdata)
 #df['Time'] = pd.to_datetime(df.loc[:,'Time'])
 
 print("Collected Data: ", rawdata)
 print("DF: ", df)
 
-df.to_csv("/Users/noor/Bot4BACS/Sensoring/serial_test_cal.csv", index=False)
+df.to_csv("/Users/noor/Bot4BACS/Sensoring/serial_test_backup.csv", index=False)
