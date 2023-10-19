@@ -4,7 +4,10 @@ import matplotlib.pyplot as plt
 import matplotlib.dates
 from datetime import datetime
 
-terms=[]
+x = range(0,100,10)
+print(x)
+
+""" terms=[]
 
 df1 = pd.read_csv('/home/hello-robot/Bot4BACS/F3_B8_07_6C_28_8E.csv')    #Window
 df2 = pd.read_csv('/home/hello-robot/Bot4BACS/C3_23_CF_79_6C_FB.csv')    #Coffee Desk
@@ -41,7 +44,7 @@ plt.xlabel('Time')
 plt.ylabel('Temperature in °C')
 plt.xticks(rotation= 30, ha='right')
 plt.show()
-
+ """
 
 """ df.plot(x="Time", y=["CO2", "Temperature", "Pressure"])
 plt.show() """
