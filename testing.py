@@ -6,6 +6,8 @@ from datetime import datetime
 
 x = range(0,100,10)
 print(x)
+result = 3%3
+print("Modulo: ", result)
 
 """ terms=[]
 
