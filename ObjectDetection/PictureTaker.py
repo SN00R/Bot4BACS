@@ -75,7 +75,7 @@ while True:
         #Take a picture!
         filename = dirname + '_' + str(imnum) + '.jpg'
         savepath = os.path.join(dirpath, filename)
-        cv2.imwrite(savepath, frame)
+        cv2.imwrite(savepath, new)
         print('Picture taken and saved as %s' % filename)
         imnum = imnum + 1
 
