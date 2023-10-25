@@ -1,7 +1,8 @@
 import os
 
-dirname = "/Users/noor/Bot4BACS/ObjectDetection/Img/"
-destdirname = "/Users/noor/Bot4BACS/ObjectDetection/renamed/"
+destdirname = "/Users/noor/Bot4BACS/ObjectDetection/Img_selected/"
+dirname = "/Users/noor/Bot4BACS/ObjectDetection/rename/"
+
 imnum = 1
 #print(os.listdir(dirname))
 for img in os.listdir(dirname):
