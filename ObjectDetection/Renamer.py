@@ -1,7 +1,6 @@
 import os
-import cv2
 
-dirname = "/Users/noor/Bot4BACS/ObjectDetection/Rotated"
+dirname = "/Users/noor/Bot4BACS/ObjectDetection/Img"
 imnum = 1
 for img in os.listdir(dirname):
     imgpath = os.path.join(dirname,img) 
@@ -10,3 +9,5 @@ for img in os.listdir(dirname):
     os.rename(imgpath,savepath)
     imnum = imnum + 1
     print("Rotated picture saved: ", filename)
+    
+print("imnunm: ", imnum)
