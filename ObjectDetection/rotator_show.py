@@ -4,13 +4,21 @@ import glob
 from PIL import Image
 
 imnum = 1
-dirname = "/Users/noor/Bot4BACS/ObjectDetection/Renamed/"
+dirname = "/Users/noor/Bot4BACS/ObjectDetection/Img_selected_renamed_rot/"
 rotpath =  "/Users/noor/Bot4BACS/ObjectDetection/rot/"
 
-print(glob.glob("*.jpg"))
-for file in glob.glob("*.jpg"):
-    src_im = Image.open(file)
-    src_im .rotate(90)
+
+#image = cv2.imread("/Users/noor/Bot4BACS/ObjectDetection/Img_selected_renamed_rot/Img_1.jpg")
+
+for img in os.listdir(dirname):
+    print("Read image: ", img)
+    filename = dirname + img
+    image = cv2.imread(str(filename))
+    cv2.imshow("ayo", image)
+    cv2.waitKey(0)
+
+print("All pictures shown succesfully")
+
 
 """ for img in os.listdir(dirname):
     imgpath = dirname + img
