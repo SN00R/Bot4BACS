@@ -15,7 +15,7 @@ for img in os.listdir(dirname):
     filename = dirname + img
     image = cv2.imread(str(filename))
     cv2.imshow("ayo", image)
-    cv2.waitKey(0)
+    cv2.waitKey(0.5)
 
 print("All pictures shown succesfully")
 
