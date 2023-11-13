@@ -26,8 +26,8 @@ void setup()
   while (!Serial) delay(10); 
   Wire.begin();        // join i2c bus (address optional for master)
 
-  lightMeter1.begin(BH1750::CONTINUOUS_HIGH_RES_MODE, 0x23, &Wire);
-  lightMeter2.begin(BH1750::CONTINUOUS_HIGH_RES_MODE, 0x5C, &Wire);
+  lightMeter1.begin(BH1750::CONTINUOUS_LOW_RES_MODE, 0x23, &Wire);
+  lightMeter2.begin(BH1750::CONTINUOUS_LOW_RES_MODE, 0x5C, &Wire);
   //Serial.println(F("BH1750 Test 2 Sensors"));
   delay(5000);
   //t1 = millis();
