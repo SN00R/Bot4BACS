@@ -76,7 +76,7 @@ except KeyboardInterrupt:
     print("----- INTERRUPTED -----")
 
 
-df = pd.DataFrame(rawdata, columns=['Time', 'Amb','Obj', 'Temp', 'Humid', 'CO2', 'Elapsed'])
+df = pd.DataFrame(rawdata, columns=['Time', 'Amb','Obj', 'Temp', 'Humid', 'CO2', 'LightFront', 'LightTop'])
 print("collected data", rawdata)
 #df['Time'] = pd.to_datetime(df.loc[:,'Time'])
 
