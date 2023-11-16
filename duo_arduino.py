@@ -34,9 +34,9 @@ thePort = commports[usePort][0]
 print(thePort)
 ser = serial.Serial(port=str(thePort),baudrate=9600, timeout=1) """
 
-ser=serial.Serial("/dev/ttyACM2",9600)
+ser=serial.Serial("/dev/ttyACM6",9600)
 ser.baudrate=9600
-ser1=serial.Serial("/dev/ttyACM6",9600)
+ser1=serial.Serial("/dev/ttyACM2",9600)
 ser1.baudrate=9600
 ser.close()
 ser.open()
@@ -55,17 +55,22 @@ try:
         print("datetime: ", stamp)
         input_data = ser.readline().strip().decode("utf-8")
         print("input: ", input_data)
-        input_data1 = ser.readline().strip().decode("utf-8")
-        print("input: ", input_data)
+        input_data1 = ser1.readline().strip().decode("utf-8")
+        print("input1: ", input_data1)
         floatdata = list(map(float, input_data.split(',')))
         rounddata = list(np.around(np.array(floatdata),2))
-        print('round data: ', rounddata)
+        #print('round data: ', rounddata)
+        floatdata1 = list(map(float, input_data1.split(',')))
+        rounddata1 = list(np.around(np.array(floatdata1),2))
+        #print('round data1: ', rounddata1)
         rounddata.insert(0, stamp)
-        rawdata.append(rounddata)
-        """         with open('/Users/noor/Bot4BACS/Sensoring/serial_test_cal.csv', 'a', newline='') as csvfile:
+        #combined = np.concatenate(rounddata,rounddata1)
+        rawdata.append(rounddata + rounddata1)
+        print(rawdata)
+        with open('/home/hello-robot/Bot4BACS/Sensoring/serial_finalsetup_test.csv', 'a', newline='') as csvfile:
                     headerwriter = csv.writer(csvfile, delimiter=',',
                                             quotechar='', quoting=csv.QUOTE_NONE)
-                    headerwriter.writerow(rounddata) """
+                    headerwriter.writerow(rounddata)
         time.sleep(2)
 
 
@@ -75,19 +80,18 @@ try:
         #   sample = pd.array(rawdata)
         #print(sample)
 
-        timecheck = datetime.now()
-        print("Timecheck: ", timecheck.strftime("%Y-%m-%d %H:%M:%S"))
+        #timecheck = datetime.now()
+        #print("Timecheck: ", timecheck.strftime("%Y-%m-%d %H:%M:%S"))
         if len(rawdata) > 6000:
             break
 except KeyboardInterrupt:
     print("----- INTERRUPTED -----")
 
 
-#df = pd.DataFrame(rawdata, columns=['Time', 'Amb','Obj', 'Temp', 'Humid', 'CO2', 'Elapsed'])
+df = pd.DataFrame(rawdata, columns=['Time', 'Amb','Obj', 'Temp', 'Humid', 'CO2', 'Elapsed', 'LightFront', 'LightTop'])
 print("collected data", rawdata)
-#df['Time'] = pd.to_datetime(df.loc[:,'Time'])
+df['Time'] = pd.to_datetime(df.loc[:,'Time'])
 
-print("Collected Data: ", rawdata)
 #print("DF: ", df)
 
-#df.to_csv("/Users/noor/Bot4BACS/Sensoring/serial_finalsetup_test.csv", index=False)
+df.to_csv("/home/hello-robot/Bot4BACS/Sensoring/serial_finalsetup_test.csv", index=False)

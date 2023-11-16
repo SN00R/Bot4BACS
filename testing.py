@@ -4,10 +4,14 @@ import matplotlib.pyplot as plt
 import matplotlib.dates
 from datetime import datetime
 
-x = range(0,100,10)
-print(x)
-result = 3%3
-print("Modulo: ", result)
+
+x = [5,2,2]
+a = [0,1,0]
+
+d = []
+
+d.append([x,a])
+print(d)
 
 """ terms=[]
 
