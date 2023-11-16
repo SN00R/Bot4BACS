@@ -4,10 +4,11 @@ import matplotlib.pyplot as plt
 import matplotlib.dates
 from datetime import datetime
 
-x = range(0,100,10)
-print(x)
-result = 3%3
-print("Modulo: ", result)
+dfpath = "/Users/noor/Bot4BACS/test.csv"
+
+df = pd.read_csv(dfpath)
+
+print(df)
 
 """ terms=[]
 
