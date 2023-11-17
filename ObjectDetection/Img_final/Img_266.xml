@@ -1,0 +1,26 @@
+<annotation>
+	<folder>Img_final</folder>
+	<filename>Img_266.jpg</filename>
+	<path>/Users/noor/thesis_local/Img_final/Img_266.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>720</width>
+		<height>1280</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>Light_Switch</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>361</xmin>
+			<ymin>135</ymin>
+			<xmax>509</xmax>
+			<ymax>280</ymax>
+		</bndbox>
+	</object>
+</annotation>
