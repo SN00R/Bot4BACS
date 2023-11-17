@@ -34,9 +34,9 @@ thePort = commports[usePort][0]
 print(thePort)
 ser = serial.Serial(port=str(thePort),baudrate=9600, timeout=1) """
 
-ser=serial.Serial("/dev/ttyACM2",9600)
+ser=serial.Serial("/dev/ttyACM6",9600)
 ser.baudrate=9600
-ser1=serial.Serial("/dev/ttyACM6",9600)
+ser1=serial.Serial("/dev/ttyACM",9600)
 ser1.baudrate=9600
 ser.close()
 ser.open()
@@ -83,11 +83,9 @@ except KeyboardInterrupt:
     print("----- INTERRUPTED -----")
 
 
-<<<<<<< HEAD
-#df = pd.DataFrame(rawdata, columns=['Time', 'Amb','Obj', 'Temp', 'Humid', 'CO2', 'Elapsed'])
-=======
+
 df = pd.DataFrame(rawdata, columns=['Time', 'Amb','Obj', 'Temp', 'Humid', 'CO2', 'LightFront', 'LightTop'])
->>>>>>> d341ae4c3e8fbd97fd6cfd8b5258b332e6580af9
+
 print("collected data", rawdata)
 #df['Time'] = pd.to_datetime(df.loc[:,'Time'])
 

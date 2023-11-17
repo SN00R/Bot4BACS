@@ -34,9 +34,9 @@ thePort = commports[usePort][0]
 print(thePort)
 ser = serial.Serial(port=str(thePort),baudrate=9600, timeout=1) """
 
-ser=serial.Serial("/dev/ttyACM6",9600)
+ser=serial.Serial("/dev/ttyACM7",9600)
 ser.baudrate=9600
-ser1=serial.Serial("/dev/ttyACM2",9600)
+ser1=serial.Serial("/dev/ttyACM6",9600)
 ser1.baudrate=9600
 ser.close()
 ser.open()
@@ -48,6 +48,7 @@ rawdata=[]
 count=0
 df = []
 sample = []
+constr_brightness =[]
 try:
     while ser.isOpen() & ser1.isOpen():
         stamp = datetime.now()
@@ -66,7 +67,13 @@ try:
         rounddata.insert(0, stamp)
         #combined = np.concatenate(rounddata,rounddata1)
         rawdata.append(rounddata + rounddata1)
-        print(rawdata)
+        if rounddata1[0] <=50.0 and rounddata1[1] <=50.0:
+            print("--------- Room too dark! Switch on the Light! --------- ")
+            constr_brightness.append(rounddata1)
+        if rounddata1[0] >=2000.0 and rounddata1[1] >=2000.0:
+            print("--------- Room too bright! Switch off the Light! --------- ")
+            constr_brightness.append(rounddata1)
+        #print(rawdata)
         with open('/home/hello-robot/Bot4BACS/Sensoring/serial_finalsetup_test.csv', 'a', newline='') as csvfile:
                     headerwriter = csv.writer(csvfile, delimiter=',',
                                             quotechar='', quoting=csv.QUOTE_NONE)
@@ -82,16 +89,16 @@ try:
 
         #timecheck = datetime.now()
         #print("Timecheck: ", timecheck.strftime("%Y-%m-%d %H:%M:%S"))
-        if len(rawdata) > 6000:
+        if len(rawdata) > 3650:
             break
 except KeyboardInterrupt:
     print("----- INTERRUPTED -----")
 
 
-df = pd.DataFrame(rawdata, columns=['Time', 'Amb','Obj', 'Temp', 'Humid', 'CO2', 'Elapsed', 'LightFront', 'LightTop'])
+df = pd.DataFrame(rawdata, columns=['Time', 'Amb','Obj', 'Temp', 'Humid', 'CO2', 'Elapsed', 'LightTop', 'LightFront'])
 print("collected data", rawdata)
 df['Time'] = pd.to_datetime(df.loc[:,'Time'])
-
+print("Constraints Violations: ", constr_brightness)
 #print("DF: ", df)
 
 df.to_csv("/home/hello-robot/Bot4BACS/Sensoring/serial_finalsetup_test.csv", index=False)
