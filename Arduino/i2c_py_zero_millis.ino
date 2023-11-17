@@ -9,7 +9,6 @@
 
 // This example code is in the public domain.
 
-
 #include <Wire.h>
 #include <Adafruit_SCD30.h>
 #include <Adafruit_MLX90614.h>
