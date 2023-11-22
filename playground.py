@@ -11,7 +11,7 @@ def percentage_change(col1,col2):
 
 dfm = pd.read_csv("/Users/noor/Bot4BACS/Testo_Cal/Morning_data_new.csv")
 dfa = pd.read_csv("/Users/noor/Bot4BACS/Testo_Cal/Afternoon_data_new.csv")
-print(dfa)
+#print(dfa)
 
 #xaxis = ['SCD30', 'Testo', 'IR']
 
@@ -27,10 +27,7 @@ print(dfa)
 
 #mean_diff_perc = df_sensoren["Percentage"].mean()
 #print("mean_diff: ", "%.3f" % mean_diff_perc)print(df_sensoren) 
-mean_val = dfa['Diff_TempIR'].mean()
-mean_val2 = dfm['Diff_TempSCD'].mean()
-print('Mean Difference Testo - SCD: ', mean_val)
-print('Mean Difference Testo - SCD: ', mean_val2)
+
 #mean_ajeeb = dfm['018 [°C]'].mean() - dfm['Amb'].mean()
 #print('IR Temp Mean for checking', mean_ajeeb)
 
@@ -38,18 +35,19 @@ timecol = pd.to_datetime(dfa["Time"], format = '%Y-%m-%d %H:%M:%S')
 
 fig, (ax1,ax2) = plt.subplots(1,2, figsize=(12,6))
 #fig, ax1 = plt.subplots()
-fig.suptitle('Afternoon Data Distribution in Measurement Difference: Temperature')
+fig.suptitle('Morning Data Distribution in Measurement Difference: Temperature')
 #fig.tight_layout()
-data1 = dfa['Diff_TempIR']
+data1 = dfm['Diff_TempIR']
 ax1.set_title('Testo400 - MLX90614')
 ax1.set_ylabel('Samples')
 ax1.set_xlabel('Difference in °C')
-height, bins, patches = ax1.hist(data1, color = '#0065bd', edgecolor = 'black', bins = 8)
-ax1.set(yticks=range(0,1101,100))
-ticks = [(patch.get_x() + (patch.get_x() + patch.get_width()))/2 for patch in patches] ## or ticklabels
+height, bins, patches = ax1.hist(data1, color = '#0065bd', edgecolor = 'black', bins = 'fd')
+#ax1.set(yticks=range(0,1101,100))
+#ticks = [(patch.get_x() + (patch.get_x() + patch.get_width()))/2 for patch in patches] ## or ticklabels
 ax1.grid(alpha=0.4, axis='y')
-ticklabels = (bins[1:] + bins[:-1]) / 2 ## or ticks
-ax1.set_xticks(ticks, np.round(ticklabels, 2))
+#ticklabels = (bins[1:] + bins[:-1]) / 2 ## or ticks
+#ax1.set_xticks(ticks, np.round(ticklabels, 2))
+mean_val = data1.mean()
 median1 = np.median(data1)          # Median: 50% der Daten über oder drunter
 sigma1 = data1.std()                # Standardverteilung
 textstr1 = '\n'.join((
@@ -60,19 +58,20 @@ textstr1 = '\n'.join((
 props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
 
 # place a text box in upper left in axes coords
-ax1.text(0.05, 0.95, textstr1, transform=ax1.transAxes, fontsize=14,
+ax1.text(0.6, 0.95, textstr1, transform=ax1.transAxes, fontsize=14,
         verticalalignment='top', bbox=props)
 
-data2 = dfa['Diff_TempSCD']
+data2 = dfm['Diff_TempSCD']
 ax2.set_title('Testo 400 – SCD30')
 ax2.set_ylabel('Samples')
 ax2.set_xlabel('Difference in °C')
-height, bins, patches = ax2.hist(dfm['Diff_TempSCD'], color = '#0065bd', edgecolor = 'black', bins = 8)
+height, bins, patches = ax2.hist(data2, color = '#0065bd', edgecolor = 'black', bins ='fd')
 ax2.grid(alpha=0.4, axis='y')
-ax2.set(yticks=range(0,1101,100))
+#ax2.set(yticks=range(0,1101,100))
 ticks = [(patch.get_x() + (patch.get_x() + patch.get_width()))/2 for patch in patches] ## or ticklabels
 ticklabels = (bins[1:] + bins[:-1]) / 2 ## or ticks
-ax2.set_xticks(ticks, np.round(ticklabels, 2))
+#ax2.set_xticks(ticks, np.round(ticklabels, 2))
+mean_val2 = data2.mean()
 median2 = np.median(data2)          # Median: 50% der Daten über oder drunter
 sigma2 = data2.std()                # Standardverteilung
 textstr2 = '\n'.join((
@@ -84,9 +83,12 @@ textstr2 = '\n'.join((
 ax2.text(0.55, 0.95, textstr2, transform=ax2.transAxes, fontsize=14,
         verticalalignment='top', bbox=props)
 
-#plt.show()
-fig.savefig('/Users/noor/Bot4BACS/Sensor_Figures/Temp_hist_afternoon.pdf',bbox_inches='tight', dpi=200) 
+plt.show()
+print('Mean Difference Testo - SCD: ', mean_val)
+print('Mean Difference Testo - SCD: ', mean_val2)
+fig.savefig('/Users/noor/Bot4BACS/Sensor_Figures/Temp_hist_morning.pdf',bbox_inches='tight', dpi=200) 
 
+""" 
 fig, ax = plt.subplots()
 ax.set_title('Afternoon Data: Difference in Measurements: Temperature')
 ax.plot(timecol, abs(data1), label='Testo400 – MLX90614', color='#0065bd')
@@ -97,7 +99,7 @@ ax.grid(alpha=0.4)
 ax.legend()
 plt.show()
 
-fig.savefig('/Users/noor/Bot4BACS/Sensor_Figures/Temp_afternoon.pdf',bbox_inches='tight', dpi=200)
+fig.savefig('/Users/noor/Bot4BACS/Sensor_Figures/Temp_afternoon.pdf',bbox_inches='tight', dpi=200) """
 
 """ #Mouse callback function
 def draw_shape(event,x,y,flags,param):
@@ -123,12 +125,7 @@ convdata = list(map(float, input_data.split(',')))
 rounded = list(np.around(np.array(convdata),2))
  """
 
- #convdata = list(input_data.split(','))
-#bro.replace("],", "];")
-<<<<<<< HEAD
-#print(bro)
-#print(data)
-
+""" 
 def percentage_change(col1,col2):
     return ((col2 - col1) / col1) * 100
 
@@ -159,7 +156,7 @@ plt.legend()
 #plt.show()
 print(df_selected.head())
 
-
+ """
 
 
 #print("Collected Data: ", rawdata)
@@ -172,7 +169,7 @@ print(df_selected.head())
 #print(dff)
 
 
-=======
+
 #ax2 = ax.twiny()
 #for patch, color in zip(bp['boxes'], colors):
     #patch.set_facecolor(color)
@@ -189,4 +186,3 @@ print(df_selected.head())
 #plt.xticks(rotation= 30, ha='right')
 #bp = ax.boxplot(data, labels=xaxis, patch_artist=True)
 #colors = ['pink', 'lightblue', 'thistle','lightgreen', 'plum']
->>>>>>> 18cbdb3bbe5622e7077546b3f00a932eaaeb1985
