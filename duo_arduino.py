@@ -48,6 +48,7 @@ rawdata=[]
 count=0
 df = []
 sample = []
+constr_brightness =[]
 try:
     while ser.isOpen() & ser1.isOpen():
         stamp = datetime.now()
@@ -66,11 +67,21 @@ try:
         rounddata.insert(0, stamp)
         #combined = np.concatenate(rounddata,rounddata1)
         rawdata.append(rounddata + rounddata1)
-        print(rawdata)
-        with open('/home/hello-robot/Bot4BACS/Sensoring/serial_finalsetup_test.csv', 'a', newline='') as csvfile:
+        if rounddata1[0] <=50.0 and rounddata1[1] <=50.0:
+            print("--------- Room too dark! Switch on the Light! --------- ")
+            constr_brightness.append(rounddata1)
+        if rounddata1[0] >=2000.0 and rounddata1[1] >=2000.0:
+            print("--------- Room too bright! Switch off the Light! --------- ")
+            constr_brightness.append(rounddata1)
+        if rounddata[4] >= 1100.0:
+            print("--------- Room has bad Air Quality! Open the Window! --------- ")
+
+        #print(rawdata)
+        with open('/home/hello-robot/Bot4BACS/Sensoring/VisionWood_2211.csv', 'a', newline='') as csvfile:
                     headerwriter = csv.writer(csvfile, delimiter=',',
                                             quotechar='', quoting=csv.QUOTE_NONE)
-                    headerwriter.writerow(rounddata)
+                    headerwriter.writerow(rounddata+rounddata1)
+
         time.sleep(2)
 
 
@@ -82,16 +93,16 @@ try:
 
         #timecheck = datetime.now()
         #print("Timecheck: ", timecheck.strftime("%Y-%m-%d %H:%M:%S"))
-        if len(rawdata) > 6000:
+        if len(rawdata) > 3650:
             break
 except KeyboardInterrupt:
     print("----- INTERRUPTED -----")
 
 
-df = pd.DataFrame(rawdata, columns=['Time', 'Amb','Obj', 'Temp', 'Humid', 'CO2', 'Elapsed', 'LightFront', 'LightTop'])
+df = pd.DataFrame(rawdata, columns=['Time', 'Amb','Obj', 'Temp', 'Humid', 'CO2', 'Elapsed', 'LightTop', 'LightFront'])
 print("collected data", rawdata)
 df['Time'] = pd.to_datetime(df.loc[:,'Time'])
-
+print("Constraints Violations: ", constr_brightness)
 #print("DF: ", df)
 
-df.to_csv("/home/hello-robot/Bot4BACS/Sensoring/serial_finalsetup_test.csv", index=False)
+df.to_csv("/home/hello-robot/Bot4BACS/Sensoring/VisionWood_Backup.csv", index=False)

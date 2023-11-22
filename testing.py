@@ -5,7 +5,8 @@ import matplotlib.dates
 from datetime import datetime
 
 x = range(0,100,10)
-print(x)
+
+print(range(1,5))
 result = 3%3
 print("Modulo: ", result)
 
