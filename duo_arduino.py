@@ -34,9 +34,9 @@ thePort = commports[usePort][0]
 print(thePort)
 ser = serial.Serial(port=str(thePort),baudrate=9600, timeout=1) """
 
-ser=serial.Serial("/dev/ttyACM7",9600)
+ser=serial.Serial("/dev/ttyACM6",9600)
 ser.baudrate=9600
-ser1=serial.Serial("/dev/ttyACM6",9600)
+ser1=serial.Serial("/dev/ttyACM2",9600)
 ser1.baudrate=9600
 ser.close()
 ser.open()
@@ -73,11 +73,15 @@ try:
         if rounddata1[0] >=2000.0 and rounddata1[1] >=2000.0:
             print("--------- Room too bright! Switch off the Light! --------- ")
             constr_brightness.append(rounddata1)
+        if rounddata[4] >= 1100.0:
+            print("--------- Room has bad Air Quality! Open the Window! --------- ")
+
         #print(rawdata)
-        with open('/home/hello-robot/Bot4BACS/Sensoring/serial_finalsetup_test.csv', 'a', newline='') as csvfile:
+        with open('/home/hello-robot/Bot4BACS/Sensoring/VisionWood_2211.csv', 'a', newline='') as csvfile:
                     headerwriter = csv.writer(csvfile, delimiter=',',
                                             quotechar='', quoting=csv.QUOTE_NONE)
-                    headerwriter.writerow(rounddata)
+                    headerwriter.writerow(rounddata+rounddata1)
+
         time.sleep(2)
 
 
@@ -101,4 +105,4 @@ df['Time'] = pd.to_datetime(df.loc[:,'Time'])
 print("Constraints Violations: ", constr_brightness)
 #print("DF: ", df)
 
-df.to_csv("/home/hello-robot/Bot4BACS/Sensoring/serial_finalsetup_test.csv", index=False)
+df.to_csv("/home/hello-robot/Bot4BACS/Sensoring/VisionWood_Backup.csv", index=False)

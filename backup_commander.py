@@ -117,7 +117,6 @@ def main():
                 navigator.get_logger().info("-------------Spin done-------------")
                
                 #print('--- Move Arm out ---')
-         
 
                 
                 #print('--- Move Arm in ---')
