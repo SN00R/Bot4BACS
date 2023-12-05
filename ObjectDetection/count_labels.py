@@ -8,7 +8,7 @@ labels = {"Radiator","Knob_Radiator", "Light_Switch"}
 counter = 0
 num_labels = []
 
-selected = df[df.label_name == "Light_Switch"]
+selected = df[df.label_name == "Knob_Radiator"]
 print(selected)
 #num_labels.append(len(selected))
 print(len(selected))
