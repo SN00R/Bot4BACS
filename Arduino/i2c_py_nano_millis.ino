@@ -43,7 +43,7 @@ void loop()
     float lux1 = lightMeter1.readLightLevel();              // BH1750 0x23 Measurements
     float lux2 = lightMeter2.readLightLevel();              // BH1750 0x5A Measurements
     Serial.print(lux1); Serial.print(",");
-    Serial.print(lux2); Serial.println(",");
+    Serial.println(lux2);
   }
 
 }

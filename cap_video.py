@@ -10,11 +10,11 @@ writer= cv2.VideoWriter('basicvideo.mp4', cv2.VideoWriter_fourcc(*'MJPG'), 20, (
 
 while True:
     ret,frame= cap.read()
-    #new = cv2.rotate(frame,cv2.ROTATE_90_CLOCKWISE)
+    new = cv2.rotate(frame,cv2.ROTATE_90_CLOCKWISE)
 
     writer.write(frame)
 
-    cv2.imshow('frame', frame)
+    cv2.imshow('frame', new)
 
     if cv2.waitKey(1) & 0xFF == 27:
         break
