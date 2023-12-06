@@ -4,12 +4,24 @@ import matplotlib.pyplot as plt
 import matplotlib.dates
 from datetime import datetime
 
-x = range(0,100,10)
+import csv
 
-print(range(1,5))
-result = 3%3
-print("Modulo: ", result)
+headerdata = ['msg']
+posdata = [["geometry_msgs.msg.PoseStamped(header=std_msgs.msg.Header(stamp=builtin_interfaces.msg.Time(sec=1701867298, nanosec=667436220), frame_id='map'), pose=geometry_msgs.msg.Pose(position=geometry_msgs.msg.Point(x=0.49, y=-2.47, z=0.0), orientation=geometry_msgs.msg.Quaternion(x=0.0, y=0.0, z=0.0, w=1.0))) "],
+         ["geometry_msgs.msg.PoseStamped(header=std_msgs.msg.Header(stamp=builtin_interfaces.msg.Time(sec=1701867298, nanosec=667436220), frame_id='map'), pose=geometry_msgs.msg.Pose(position=geometry_msgs.msg.Point(x=1.16, y=0.68, z=0.0), orientation=geometry_msgs.msg.Quaternion(x=0.0, y=0.0, z=0.0, w=1.0)))"]]
 
+
+with open('posdata_testing.csv', 'w', encoding='UTF8', newline='') as f:
+    writer = csv.writer(f)
+
+    # write the header
+    writer.writerow(headerdata)
+
+    # write the data
+    writer.writerows(posdata)
+
+df = pd.read_csv("/Users/noor/Bot4BACS/posdata_testing.csv")
+print(df)
 """ terms=[]
 
 df1 = pd.read_csv('/home/hello-robot/Bot4BACS/F3_B8_07_6C_28_8E.csv')    #Window
