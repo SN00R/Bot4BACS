@@ -1,8 +1,5 @@
-// --------------------------------------
-// i2c_scanner
-//
-// Modified from https://playground.arduino.cc/Main/I2cScanner/
-// --------------------------------------
+// Use this Arduino script in the Arduino IDE to flash any microcontroller to find out the addresses on the respective I2C Bus.
+// Useful to double-check if the connected devices are recognized at all / correctly. 
 
 #include <Wire.h>
 

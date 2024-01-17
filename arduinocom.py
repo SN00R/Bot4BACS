@@ -1,3 +1,6 @@
+# Script to start the Sensor Data collection! 
+# The data will be saved on
+
 import serial
 import time
 import serial.tools.list_ports
@@ -6,6 +9,7 @@ import pandas as pd
 import numpy as np
 from datetime import datetime
 import csv 
+import os
 
 t = time.localtime()
 start_time = time.strftime("%H:%M:%S", t)
@@ -62,12 +66,13 @@ try:
         print('round data: ', rounddata)
         rounddata.insert(0, stamp)
         rawdata.append(rounddata)
-        """         with open('/Users/noor/Bot4BACS/Sensoring/serial_test_cal.csv', 'a', newline='') as csvfile:
+
+        # write line per line in existing csv        
+        with open('/Users/noor/Bot4BACS/Sensor_Data/sensor_data.csv', 'a', newline='') as csvfile:
                     headerwriter = csv.writer(csvfile, delimiter=',',
                                             quotechar='', quoting=csv.QUOTE_NONE)
-                    headerwriter.writerow(rounddata) """
+                    headerwriter.writerow(rounddata) 
         time.sleep(2)
-
 
         #print("input_data length: ", len(input_data))
         #print("rawdata length: ", len(rawdata))
@@ -86,10 +91,21 @@ except KeyboardInterrupt:
 
 df = pd.DataFrame(rawdata, columns=['Time', 'Amb','Obj', 'Temp', 'Humid', 'CO2', 'LightFront', 'LightTop'])
 
-print("collected data", rawdata)
 #df['Time'] = pd.to_datetime(df.loc[:,'Time'])
-
-print("Collected Data: ", rawdata)
+print("Collected Data: ", df)
 #print("DF: ", df)
 
-#df.to_csv("/Users/noor/Bot4BACS/Sensoring/serial_finalsetup_test.csv", index=False)
+# Save all data of this session in a seperate dataset as backup
+def csvname(path):
+    filename, extension = os.path.splitext(path)
+    time = datetime.now()
+    time = time.strftime("%Y-%m-%d %H:%M:%S")
+    while os.path.exists(path):
+        path = filename + str(time) + ".csv"
+        path = path.replace(" ", "_")
+        path = path.replace(":", "_")
+        path = path.replace("-", "_")
+    return path
+filepath = "/Users/noor/Bot4BACS/Sensor_Data/"
+filename = csvname(filepath)
+df.to_csv(str(filename), index=False)

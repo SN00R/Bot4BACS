@@ -1,20 +1,13 @@
-// Wire Master Reader
-// by Nicholas Zambetti <http://www.zambetti.com>
-
-// Demonstrates use of the Wire library
-// Reads data from an I2C/TWI slave device
-// Refer to the "Wire Slave Sender" example for use with this
-
-// Created 29 March 2005
-
-// This example code is in the public domain.
+// Use this Arduino script in the Arduino IDE to flash the Adafruit M0 Metro Express on the Wrist of the robot.
+// Make sure the IR Sensor and the CO2 Sensor are connected to the Nano.
+// Also make sure that both brightness sensors have different addresses (on one the ADDR Pin is grounded, on the other with VCC)  
 
 #include <Wire.h>
 #include <Adafruit_SCD30.h>
 #include <Adafruit_MLX90614.h>
 
-Adafruit_SCD30  scd30;
-Adafruit_MLX90614 mlx = Adafruit_MLX90614();
+Adafruit_SCD30  scd30;                        // CO2, Humidity, Temperature Sensor
+Adafruit_MLX90614 mlx = Adafruit_MLX90614();  // IR and Ambient Temperature Sensor
 long int t1, t2;
 unsigned long previousMillis = 0; 
 const long interval = 2000; 

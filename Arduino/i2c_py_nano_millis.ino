@@ -1,14 +1,6 @@
-// Wire Master Reader
-// by Nicholas Zambetti <http://www.zambetti.com>
-
-// Demonstrates use of the Wire library
-// Reads data from an I2C/TWI slave device
-// Refer to the "Wire Slave Sender" example for use with this
-
-// Created 29 March 2005
-
-// This example code is in the public domain.
-
+// Use this Arduino script in the Arduino IDE to flash the Arduino Nano on the head of the robot.
+// Make sure the two brightness sensors are connected to the Nano.
+// Also make sure that both brightness sensors have different addresses (on one the ADDR Pin is grounded, on the other with VCC)  
 
 #include <Wire.h>
 #include <BH1750.h>

@@ -1,3 +1,5 @@
+# Edited Picture Taking Script to create the dataset with the robot's camera while teleoperating the robot remotely. 
+
 ######## Simple Picture Taking Script #########
 #
 # Author: Evan Juras, EJ Technology Consultants
@@ -9,6 +11,7 @@
 #
 # Example usage to save images in a directory named Sparrow at 1920x1080 resolution:
 # python3 PictureTaker.py --imgdir=Sparrow --resolution=1920x1080
+
 
 import cv2
 import os

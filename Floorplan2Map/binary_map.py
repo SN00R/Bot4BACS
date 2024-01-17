@@ -1,3 +1,6 @@
+# Not essential but optional part of preparing the floorplan before creating a map
+# Turns the floorplan into a binary (black and white) image.
+
 import cv2 # Import OpenCV
    
 # read the image file

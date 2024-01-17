@@ -1,3 +1,4 @@
+# Record a video with the camera on the robot for demonstrations
 import cv2
 
 cap= cv2.VideoCapture(4)
@@ -6,7 +7,6 @@ width= int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 height= int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
 writer= cv2.VideoWriter('basicvideo.mp4', cv2.VideoWriter_fourcc(*'MJPG'), 20, (width,height))
-
 
 while True:
     ret,frame= cap.read()

@@ -1,3 +1,5 @@
+# Helper script to rotate all images in a folder
+
 import os
 import cv2
 import glob

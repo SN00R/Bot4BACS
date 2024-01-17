@@ -1,6 +1,6 @@
 # Bot4BACS
 
-Here I will create a super nice repo for my project!
+Here I will create a repo for my thesis project!
 
 ## Get started:
 
@@ -11,5 +11,7 @@ Here I will create a super nice repo for my project!
 1. Install requirements
     ```
     pip install -r requirements.txt
+
     ```
     
+2. Follow the guideline pdf for more information!    
