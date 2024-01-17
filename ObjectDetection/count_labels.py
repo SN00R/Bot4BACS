@@ -1,0 +1,17 @@
+# helper script to count the frequency of each label in the labeled dataset
+
+import pandas as pd
+
+df = pd.read_csv("/Users/noor/Bot4BACS/ObjectDetection/labels_my-project-name_2023-11-08-11-04-35.csv")
+
+labels = {"Radiator","Knob_Radiator", "Light_Switch"}
+#print(labels)
+#print(df["label_name"])
+counter = 0
+num_labels = []
+
+selected = df[df.label_name == "Knob_Radiator"]
+print(selected)
+#num_labels.append(len(selected))
+print(len(selected))
+

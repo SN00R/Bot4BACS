@@ -1,3 +1,9 @@
 bleak
 pandas
 matplotlib
+scikit-learn
+pyserial
+python-time
+datetime
+python-csv
+serial-tool

@@ -1,3 +1,5 @@
+# Edited EmpAIR script that can be found online or from the colleagues who developed it. 
+
 import asyncio
 from bleak import BleakScanner
 from bleak import AdvertisementData
@@ -21,8 +23,8 @@ async def runBleScan():
     global strongestSignal
 
     devices = await BleakScanner.discover(timeout=5.0) # could use AdvertisementFilter, BluetoothLEAdvertisementFilter.BytePatterns Property
-    #print(devices)
-    #print('#devices: ', len(devices))
+    print(devices)
+    print('#devices: ', len(devices))
     dataList = []
     macList = []
     rssiList = []
@@ -148,11 +150,15 @@ try:
     while True:
         time.sleep(1)
         print('processing...')  
-        if time.time() - start_time > 3000:
+        if time.time() - start_time > 2000:
             print("Process stopped after: ", (time.time() - start_time)/60, "mins")
             print("exiting...")
             print('------ BREAK ------ exiting after time limit...')
             break
 
 except KeyboardInterrupt:
+    print("Process stopped after: ", (time.time() - start_time)/60, "mins")
+    print("exiting...")
     print('------ BREAK ------ exiting after interrupt...')
+    print("Process stopped after: ", (time.time() - start_time)/60, "mins")
+    print("exiting...")
