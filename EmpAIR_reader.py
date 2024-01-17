@@ -1,3 +1,5 @@
+# Edited EmpAIR script that can be found online or from the colleagues who developed it. 
+
 import asyncio
 from bleak import BleakScanner
 from bleak import AdvertisementData

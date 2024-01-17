@@ -1,3 +1,6 @@
+# Helper script: If images are deleted after collecting the image data in a selection phase, this script can be used to rename the images.
+# That way, there are no gaps between the image numbers.
+
 import os
 import re
 

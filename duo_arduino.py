@@ -107,4 +107,5 @@ df['Time'] = pd.to_datetime(df.loc[:,'Time'])
 print("Constraints Violations: ", constr_brightness)
 #print("DF: ", df)
 
+
 df.to_csv("/home/hello-robot/Bot4BACS/Sensoring/VisionWood_Backup.csv", index=False)

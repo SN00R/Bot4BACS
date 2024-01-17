@@ -1,3 +1,4 @@
+# helper script to check dataset for double 
 import os
 import filecmp
 
@@ -15,10 +16,3 @@ print("Match :", match)
 print("Mismatch :", mismatch)
 print("Errors :", errors)
 
-
-""" for img in os.listdir(imgdirname):
-    for rot in os.listdir(rotdirname):
-        if img == rot:
-            print("Ok!")
-        else:
-            print("Data missing in RotateDir: ", img) """
