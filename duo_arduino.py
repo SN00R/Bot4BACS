@@ -34,8 +34,10 @@ thePort = commports[usePort][0]
 print(thePort)
 ser = serial.Serial(port=str(thePort),baudrate=9600, timeout=1) """
 
+# Adafruit Metro M0 Express on Gripper
 ser=serial.Serial("/dev/ttyACM6",9600)
 ser.baudrate=9600
+# Arduino Nano Every on Head
 ser1=serial.Serial("/dev/ttyACM2",9600)
 ser1.baudrate=9600
 ser.close()
